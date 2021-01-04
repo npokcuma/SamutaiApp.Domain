@@ -23,11 +23,12 @@ namespace ConsoleApp
 
         private static void QueryFilters()
         {
-            var samurais = context.Samurais.Where(s => s.Name == "Samson").ToList();
-            foreach (var samurai in samurais)
-            {
-                Console.WriteLine(samurai.Name);
-            }
+            //var samurais = context.Samurais.Where(s => s.Name == "Samson").ToList();
+            //foreach (var samurai in samurais) {
+            //    Console.WriteLine(samurai.Name);
+            //}
+            string name = "Samson";
+            var last = context.Samurais.OrderBy(s => s.Id).LastOrDefault(s => s.Name == name);
         }
 
         private static void AddSamurai()
