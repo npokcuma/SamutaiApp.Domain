@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
 using SamuraiApp.Data;
 using SamuraiApp.Domain;
 
@@ -17,6 +19,7 @@ namespace ConsoleApp
             Console.Write("Press any key...");
             Console.ReadKey();
         }
+
         private static void AddSamurai()
         {
             var samurai = new Samurai
