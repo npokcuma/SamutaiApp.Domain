@@ -12,12 +12,22 @@ namespace ConsoleApp
         private static SamuraiAppDataContext context = new SamuraiAppDataContext();
         static void Main(string[] args)
         {
-            context.Database.EnsureCreated();
-            GetSamurais("Before Add:");
-            AddSamurai();
-            GetSamurais("After Add:");
+            //context.Database.EnsureCreated();
+            //GetSamurais("Before Add:");
+            //AddSamurai();
+            //GetSamurais("After Add:");
+            QueryFilters();
             Console.Write("Press any key...");
             Console.ReadKey();
+        }
+
+        private static void QueryFilters()
+        {
+            var samurais = context.Samurais.Where(s => s.Name == "Samson").ToList();
+            foreach (var samurai in samurais)
+            {
+                Console.WriteLine(samurai.Name);
+            }
         }
 
         private static void AddSamurai()

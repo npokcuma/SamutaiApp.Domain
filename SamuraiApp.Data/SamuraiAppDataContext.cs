@@ -25,7 +25,6 @@ namespace SamuraiApp.Data
 
         public static readonly ILoggerFactory ConsoleLoggerFactory = LoggerFactory.Create(builder =>
         {
-            
             builder.AddFilter((category, level) =>
                     category == DbLoggerCategory.Database.Command.Name && level == LogLevel.Information)
                 .AddConsole();
@@ -35,7 +34,7 @@ namespace SamuraiApp.Data
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional:true);
+                .AddJsonFile("appsettings.json", optional: true);
             return builder.Build();
         }
 
