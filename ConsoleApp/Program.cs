@@ -16,7 +16,7 @@ namespace ConsoleApp
             //GetSamurais("Before Add:");
             //AddSamurai();
             //GetSamurais("After Add:");
-            QueryFilters();
+            MultiDataBaseOperations();
             Console.Write("Press any key...");
             Console.ReadKey();
         }
@@ -31,6 +31,16 @@ namespace ConsoleApp
             var last = context.Samurais.OrderBy(s => s.Id).LastOrDefault(s => s.Name == name);
         }
 
+        private static void MultiDataBaseOperations()
+        {
+            var samurais = context.Samurais.FirstOrDefault();
+            samurais.Name += "San";
+            context.Samurais.Add(new Samurai()
+            {
+                Name = "Kikuchio"
+            });
+            context.SaveChangesAsync();
+        }
         private static void AddSamurai()
         {
             var samurai = new Samurai
