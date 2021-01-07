@@ -26,9 +26,15 @@ namespace ConsoleApp
             //AddQuoteToExistingSamuraiWhileTracked();
             //AddQuoteToExistingSamuraiNotTracked(2);
             //AddQuoteToExistingSamuraiNotTrackedEasy(2);
-            EagerLoadingSamuraiWithQuotes();
+            //EagerLoadingSamuraiWithQuotes();
+            ProjectSamuraisWithQuotes();
             Console.Write("Press any key...");
             Console.ReadKey();
+        }
+
+        private static void ProjectSamuraisWithQuotes()
+        {
+            var somePropertiesWithQuotes = context.Samurais.Select(s => new {s.Id, s.Name, s.Quotes.Count}).ToList();
         }
 
         private static void EagerLoadingSamuraiWithQuotes()
