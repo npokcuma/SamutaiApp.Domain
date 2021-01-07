@@ -36,8 +36,13 @@ namespace ConsoleApp
         private static void ExplicitLoadQuotes()
         {
             var samurai = context.Samurais.FirstOrDefault(s => s.Name.Contains("Samson"));
-            context.Entry(samurai).Collection(s => s.Quotes).Load();
-            context.Entry(samurai).Reference(s => s.Horse).Load();
+            //context.Entry(samurai).Collection(s => s.Quotes).Load();
+            //context.Entry(samurai).Reference(s => s.Horse).Load();
+            var happyQuotes = context.Entry(samurai)
+                .Collection(b => b.Quotes)
+                .Query()
+                .Where(q => q.Text.Contains("Happy"))
+                .ToList();
         }
 
         private static void ProjectSamuraisWithQuotes()
