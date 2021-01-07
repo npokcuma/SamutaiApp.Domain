@@ -24,9 +24,24 @@ namespace ConsoleApp
             //InsertNewSamuraiWithQuote();
             //InsertNewSamuraiWithManyQuotes();
             //AddQuoteToExistingSamuraiWhileTracked();
-            AddQuoteToExistingSamuraiNotTracked(2);
+            //AddQuoteToExistingSamuraiNotTracked(2);
+            AddQuoteToExistingSamuraiNotTrackedEasy(2);
             Console.Write("Press any key...");
             Console.ReadKey();
+        }
+
+        private static void AddQuoteToExistingSamuraiNotTrackedEasy(int samuraiId)
+        {
+            var quote = new Quote()
+            {
+                Text = "Now that I saved you, will you feed me dinner again?",
+                SamuraiId =  samuraiId
+            };
+            using (var newContext = new SamuraiAppDataContext())
+            {
+                newContext.Quotes.Add(quote);
+                newContext.SaveChanges();
+            }
         }
 
         private static void AddQuoteToExistingSamuraiWhileTracked()
