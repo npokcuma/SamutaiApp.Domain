@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -19,9 +20,48 @@ namespace ConsoleApp
             //GetSamurais("After Add:");
             //MultiDataBaseOperations();
             //InsertBattle();
-            QueryAndUpdateBattleDisconected();
+            //QueryAndUpdateBattleDisconected();
+            //InsertNewSamuraiWithQuote();
+            InsertNewSamuraiWithManyQuotes();
             Console.Write("Press any key...");
             Console.ReadKey();
+        }
+
+        private static void InsertNewSamuraiWithManyQuotes()
+        {
+            var samurai = new Samurai()
+            {
+                Name = "Kyuzo",
+                Quotes = new List<Quote>()
+                {
+                    new Quote()
+                    {
+                        Text = "Watch out for my sharp sword"
+                    },
+                    new Quote()
+                    {
+                        Text = "I told you to watch out for the sharp sword! Oh well!"
+                    }
+                }
+            };
+            context.Samurais.Add(samurai);
+            context.SaveChanges();  
+        }
+
+        private static void InsertNewSamuraiWithQuote()
+        {
+            var samurai = new Samurai(){
+                Name = "Kambei Shinada",
+                Quotes = new List<Quote>()
+                {
+                    new Quote()
+                    {
+                        Text = "I've come to save you"
+                    }
+                }
+                };
+            context.Samurais.Add(samurai);
+            context.SaveChanges();
         }
 
         private static void QueryAndUpdateBattleDisconected()
