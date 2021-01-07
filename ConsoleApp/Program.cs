@@ -29,15 +29,28 @@ namespace ConsoleApp
             //EagerLoadingSamuraiWithQuotes();
             //ProjectSamuraisWithQuotes();
             //ExplicitLoadQuotes();
-            FilteringWithRelatedData();
+            //FilteringWithRelatedData();
+            ModifyingRelatedDataWhenNotTracked();
             Console.Write("Press any key...");
             Console.ReadKey();
         }
 
-        private static void FilteringWithRelatedData()
+        private static void ModifyingRelatedDataWhenNotTracked()
         {
-            var samurai = context.Samurais.Where(s => s.Quotes.Any(q=>q.Text.Contains("dinner"))).ToList();
+            var samurai = context.Samurais
+                .Include(s => s.Quotes)
+                .FirstOrDefault(s => s.Id == 2);
+            var quote = samurai.Quotes[2];
+            quote.Text = "Did you hear that again?";
+            using (var newContext = new SamuraiAppDataContext())
+            {
+                //newContext.Quotes.Update(quote);
+                newContext.Entry(quote).State = EntityState.Modified;
+                newContext.SaveChanges();
+            }
         }
+
+         
 
         //You can only load from a single object
         private static void ExplicitLoadQuotes()
