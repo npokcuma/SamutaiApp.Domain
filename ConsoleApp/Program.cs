@@ -28,10 +28,17 @@ namespace ConsoleApp
             //AddQuoteToExistingSamuraiNotTrackedEasy(2);
             //EagerLoadingSamuraiWithQuotes();
             //ProjectSamuraisWithQuotes();
-            ExplicitLoadQuotes();
+            //ExplicitLoadQuotes();
+            FilteringWithRelatedData();
             Console.Write("Press any key...");
             Console.ReadKey();
         }
+
+        private static void FilteringWithRelatedData()
+        {
+            var samurai = context.Samurais.Where(s => s.Quotes.Any(q=>q.Text.Contains("dinner"))).ToList();
+        }
+
         //You can only load from a single object
         private static void ExplicitLoadQuotes()
         {
