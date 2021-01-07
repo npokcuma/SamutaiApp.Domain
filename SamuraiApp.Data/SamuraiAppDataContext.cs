@@ -8,6 +8,10 @@ namespace SamuraiApp.Data
 {
     public partial class SamuraiAppDataContext : DbContext
     {
+        public SamuraiAppDataContext()
+        {
+            
+        }
         public SamuraiAppDataContext(DbContextOptions<SamuraiAppDataContext> options)
             : base(options)
         {
