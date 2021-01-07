@@ -22,9 +22,18 @@ namespace ConsoleApp
             //InsertBattle();
             //QueryAndUpdateBattleDisconected();
             //InsertNewSamuraiWithQuote();
-            InsertNewSamuraiWithManyQuotes();
+            //InsertNewSamuraiWithManyQuotes();
+            AddQuoteToExistingSamuraiWhileTracked();
             Console.Write("Press any key...");
             Console.ReadKey();
+        }
+
+        private static void AddQuoteToExistingSamuraiWhileTracked()
+        {
+            var samurai = context.Samurais.FirstOrDefault();
+            samurai.Quotes.Add(new Quote(){
+                Text = "I bet you're happy that I've saved you"});
+            context.SaveChanges();
         }
 
         private static void InsertNewSamuraiWithManyQuotes()
