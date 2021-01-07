@@ -20,7 +20,7 @@ namespace ConsoleApp
             //GetSamurais("After Add:");
             //MultiDataBaseOperations();
             //InsertBattle();
-            //QueryAndUpdateBattleDisconected();
+            //QueryAndUpdateBattleDisconnected();
             //InsertNewSamuraiWithQuote();
             //InsertNewSamuraiWithManyQuotes();
             //AddQuoteToExistingSamuraiWhileTracked();
@@ -46,13 +46,9 @@ namespace ConsoleApp
             });
             using (var newContext = new SamuraiAppDataContext())
             {
-                newContext.Samurais.Update(samurai);
+                newContext.Samurais.Attach(samurai);
                 newContext.SaveChanges();
             }
-            {
-                
-            }
-            context.SaveChanges();
         }
 
         private static void InsertNewSamuraiWithManyQuotes()
@@ -92,7 +88,7 @@ namespace ConsoleApp
             context.SaveChanges();
         }
 
-        private static void QueryAndUpdateBattleDisconected()
+        private static void QueryAndUpdateBattleDisconnected()
         {
             var battle = context.Battles.AsTracking().FirstOrDefault();
             battle.EndDate = new DateTime(1560, 06, 30);
