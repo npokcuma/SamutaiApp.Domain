@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SamuraiApp.Data;
 using SamuraiApp.Domain;
@@ -17,9 +18,21 @@ namespace ConsoleApp
             //AddSamurai();
             //GetSamurais("After Add:");
             //MultiDataBaseOperations();
-            InsertBattle();
+            //InsertBattle();
+            QueryAndUpdateBattleDisconected();
             Console.Write("Press any key...");
             Console.ReadKey();
+        }
+
+        private static void QueryAndUpdateBattleDisconected()
+        {
+            var battle = context.Battles.AsTracking().FirstOrDefault();
+            battle.EndDate = new DateTime(1560, 06, 30);
+            using (var newContextInstance = new SamuraiAppDataContext())
+            {
+                newContextInstance.Battles.Update(battle);
+                newContextInstance.SaveChanges();
+            }
         }
 
         private static void InsertBattle()
