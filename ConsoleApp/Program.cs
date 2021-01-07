@@ -25,9 +25,18 @@ namespace ConsoleApp
             //InsertNewSamuraiWithManyQuotes();
             //AddQuoteToExistingSamuraiWhileTracked();
             //AddQuoteToExistingSamuraiNotTracked(2);
-            AddQuoteToExistingSamuraiNotTrackedEasy(2);
+            //AddQuoteToExistingSamuraiNotTrackedEasy(2);
+            EagerLoadingSamuraiWithQuotes();
             Console.Write("Press any key...");
             Console.ReadKey();
+        }
+
+        private static void EagerLoadingSamuraiWithQuotes()
+        {
+            //var samuraiWithQuotes = context.Samurais.Where(s=>s.Name == "Samson").Include(s => s.Quotes).ToList();
+            //var samuraiWithQuotes2 = context.Samurais.Include(s => s.Quotes).ThenInclude(q => q.Translation);
+            //var samuraiWithQuotes3 = context.Samurais.Include(s => s.Quotes.Translation);
+            var samuraiWithQuotes3 = context.Samurais.Include(s => s.Quotes).Include(q => q.Clan);
         }
 
         private static void AddQuoteToExistingSamuraiNotTrackedEasy(int samuraiId)
