@@ -27,9 +27,17 @@ namespace ConsoleApp
             //AddQuoteToExistingSamuraiNotTracked(2);
             //AddQuoteToExistingSamuraiNotTrackedEasy(2);
             //EagerLoadingSamuraiWithQuotes();
-            ProjectSamuraisWithQuotes();
+            //ProjectSamuraisWithQuotes();
+            ExplicitLoadQuotes();
             Console.Write("Press any key...");
             Console.ReadKey();
+        }
+        //You can only load from a single object
+        private static void ExplicitLoadQuotes()
+        {
+            var samurai = context.Samurais.FirstOrDefault(s => s.Name.Contains("Samson"));
+            context.Entry(samurai).Collection(s => s.Quotes).Load();
+            context.Entry(samurai).Reference(s => s.Horse).Load();
         }
 
         private static void ProjectSamuraisWithQuotes()
