@@ -23,7 +23,8 @@ namespace ConsoleApp
             //QueryAndUpdateBattleDisconected();
             //InsertNewSamuraiWithQuote();
             //InsertNewSamuraiWithManyQuotes();
-            AddQuoteToExistingSamuraiWhileTracked();
+            //AddQuoteToExistingSamuraiWhileTracked();
+            AddQuoteToExistingSamuraiNotTracked(2);
             Console.Write("Press any key...");
             Console.ReadKey();
         }
@@ -33,6 +34,24 @@ namespace ConsoleApp
             var samurai = context.Samurais.FirstOrDefault();
             samurai.Quotes.Add(new Quote(){
                 Text = "I bet you're happy that I've saved you"});
+            context.SaveChanges();
+        }
+
+        private static void AddQuoteToExistingSamuraiNotTracked(int samuraiId)
+        {
+            var samurai = context.Samurais.Find(samuraiId);
+            samurai.Quotes.Add(new Quote()
+            {
+                Text = "Now that I saved you, will you feed me dinner?"
+            });
+            using (var newContext = new SamuraiAppDataContext())
+            {
+                newContext.Samurais.Update(samurai);
+                newContext.SaveChanges();
+            }
+            {
+                
+            }
             context.SaveChanges();
         }
 
