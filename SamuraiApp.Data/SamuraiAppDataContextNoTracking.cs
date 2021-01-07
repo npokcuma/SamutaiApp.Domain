@@ -6,9 +6,13 @@ using System.IO;
 
 namespace SamuraiApp.Data
 {
-    public partial class SamuraiAppDataContext : DbContext
+    public partial class SamuraiAppDataContextNoTracking : DbContext
     {
-        public SamuraiAppDataContext(DbContextOptions<SamuraiAppDataContext> options)
+        public SamuraiAppDataContextNoTracking()
+        {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        }
+        public SamuraiAppDataContextNoTracking(DbContextOptions<SamuraiAppDataContext> options)
             : base(options)
         {
         }
