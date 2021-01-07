@@ -35,9 +35,13 @@ namespace ConsoleApp
         private static void ProjectSamuraisWithQuotes()
         {
             //var somePropertiesWithQuotes = context.Samurais.Select(s => new {s.Id, s.Name, s.Quotes.Count}).ToList();
+            //var somePropertiesWithQuotes = context.Samurais
+            //    .Select(s => new {s.Id, s.Name, HappyQuotes = s.Quotes.Where(q => q.Text.Contains("happy"))})
+            //    .ToList();
             var somePropertiesWithQuotes = context.Samurais
-                .Select(s => new {s.Id, s.Name, HappyQuotes = s.Quotes.Where(q => q.Text.Contains("happy"))})
+                .Select(s => new {Samurai = s, HappyQuotes = s.Quotes.Where(q => q.Text.Contains("happy"))})
                 .ToList();
+            var firstSamurai = somePropertiesWithQuotes[0].Samurai.Name += " The Happiest";
         }
 
         private static void EagerLoadingSamuraiWithQuotes()
