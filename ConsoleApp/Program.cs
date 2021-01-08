@@ -32,9 +32,21 @@ namespace ConsoleApp
             //FilteringWithRelatedData();
             //ModifyingRelatedDataWhenNotTracked();
             //JoinBattleAndSamurai();
-            EnlistSamuraiIntoBattle();
+            //EnlistSamuraiIntoBattle();
+            RemoveJoinBetweenSamuraiAndBattleSimple();
             Console.Write("Press any key...");
             Console.ReadKey();
+        }
+
+        private static void RemoveJoinBetweenSamuraiAndBattleSimple()
+        {
+            var join = new SamuraiBattle()
+            {
+                BattleId = 1,
+                SamuraiId = 2
+            };
+            context.Remove(join);
+            context.SaveChanges();
         }
 
         private static void EnlistSamuraiIntoBattle()
