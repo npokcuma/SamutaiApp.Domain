@@ -30,9 +30,22 @@ namespace ConsoleApp
             //ProjectSamuraisWithQuotes();
             //ExplicitLoadQuotes();
             //FilteringWithRelatedData();
-            ModifyingRelatedDataWhenNotTracked();
+            //ModifyingRelatedDataWhenNotTracked();
+            JoinBattleAndSamurai();
             Console.Write("Press any key...");
             Console.ReadKey();
+        }
+
+        private static void JoinBattleAndSamurai()
+        {
+            //Samurai and Battle are exist and we have their IDs
+            var sbJoin = new SamuraiBattle()
+            {
+                SamuraiId = 1,
+                BattleId = 3,
+            };
+            context.Add(sbJoin);
+            context.SaveChanges();
         }
 
         private static void ModifyingRelatedDataWhenNotTracked()
