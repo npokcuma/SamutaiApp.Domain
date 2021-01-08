@@ -32,8 +32,17 @@ namespace ConsoleApp
             //FilteringWithRelatedData();
             //ModifyingRelatedDataWhenNotTracked();
             JoinBattleAndSamurai();
+            //EnlistSamuraiIntoBattle();
             Console.Write("Press any key...");
             Console.ReadKey();
+        }
+
+        private static void EnlistSamuraiIntoBattle()
+        {
+            var battle = context.Battles.Find(1);
+            battle.SamuraiBattles.Add(new SamuraiBattle(){
+                SamuraiId = 21});
+            context.SaveChanges();
         }
 
         private static void JoinBattleAndSamurai()
@@ -42,7 +51,7 @@ namespace ConsoleApp
             var sbJoin = new SamuraiBattle()
             {
                 SamuraiId = 1,
-                BattleId = 3,
+                BattleId = 1,
             };
             context.Add(sbJoin);
             context.SaveChanges();
