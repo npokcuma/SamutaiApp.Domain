@@ -50,6 +50,13 @@ namespace ConsoleApp
 
             var horseWithSamurai = context.Samurais.Include(s => s.Horse)
                 .FirstOrDefault(s => s.Id == 2);
+
+            var horseWithSamurais = context.Samurais.Where(s => s.Horse != null)
+                .Select(s => new
+                {
+                    Horse = s.Horse,
+                    Samurai = s
+                }).ToList();
         }
 
         private static void ReplaceHorse()
