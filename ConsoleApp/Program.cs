@@ -37,10 +37,22 @@ namespace ConsoleApp
             //GetSamuraiWithBattles();
             //AddNewHorseToSamuraiUsingId();
             //AddNewHorseToSamuraiObject();
-            AddNewHorseToDisconnectedSamuraiObject();
+            //AddNewHorseToDisconnectedSamuraiObject();
+            ReplaceHorse();
             Console.Write("Press any key...");
             Console.ReadKey();
         }
+
+        private static void ReplaceHorse()
+        {
+            var samurai = context.Samurais.Include(s => s.Horse).FirstOrDefault(s => s.Id == 9);
+            samurai.Horse = new Horse
+            {
+                Name = "Trigger"
+            };
+            context.SaveChanges();
+        }
+
 
         private static void AddNewHorseToDisconnectedSamuraiObject()
         {
