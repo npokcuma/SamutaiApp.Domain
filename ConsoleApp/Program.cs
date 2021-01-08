@@ -41,10 +41,17 @@ namespace ConsoleApp
 
         private static void GetSamuraiWithBattles()
         {
-            var samuraiWithBattle = context.Samurais.Include(s => s.SamuraiBattles)
-                .ThenInclude(sb => sb.Battle)
-                .FirstOrDefault(samurai => samurai.Id == 2);
+            //var samuraiWithBattle = context.Samurais.Include(s => s.SamuraiBattles)
+            //    .ThenInclude(sb => sb.Battle)
+            //    .FirstOrDefault(samurai => samurai.Id == 2);
 
+            var samuraiWithBattleCleaner = context.Samurais.Where(samurai => samurai.Id == 2)
+                .Select(s => new
+                {
+                    Samurai = s,
+                    Battles = s.SamuraiBattles.Select(sb => sb.Battle)
+                })
+                .FirstOrDefault();
 
         }
 
