@@ -47,6 +47,9 @@ namespace ConsoleApp
         private static void GetHorseWithSamurai()
         {
             var horseWithoutSamurai = context.Set<Horse>().Find(1);
+
+            var horseWithSamurai = context.Samurais.Include(s => s.Horse)
+                .FirstOrDefault(s => s.Id == 2);
         }
 
         private static void ReplaceHorse()
