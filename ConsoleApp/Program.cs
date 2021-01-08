@@ -40,9 +40,17 @@ namespace ConsoleApp
             //AddNewHorseToDisconnectedSamuraiObject();
             //ReplaceHorse();
             //GetHorseWithSamurai();
-            GetSamuraiWithClan();
+            //GetSamuraiWithClan();
+            GetClanWithSamurais();
             Console.Write("Press any key...");
             Console.ReadKey();
+        }
+
+        private static void GetClanWithSamurais()
+        {
+            //var clan = context.Clans.Include(c => c.....);
+            var clan = context.Clans.Find(3);
+            var samuraiForClan = context.Samurais.Where(s => s.Clan.Id == 3).ToList();
         }
 
         private static void GetSamuraiWithClan()
