@@ -34,10 +34,22 @@ namespace ConsoleApp
             //JoinBattleAndSamurai();
             //EnlistSamuraiIntoBattle();
             //RemoveJoinBetweenSamuraiAndBattleSimple();
-            GetSamuraiWithBattles();
+            //GetSamuraiWithBattles();
+            AddNewHorseToSamuraiUsingId();
             Console.Write("Press any key...");
             Console.ReadKey();
         }
+
+        private static void AddNewHorseToSamuraiUsingId()
+        {
+            var horse = new Horse(){
+                Name = "Scout",
+                SamuraiId = 2
+            };
+            context.Add(horse);
+            context.SaveChanges();
+        }
+
 
         private static void GetSamuraiWithBattles()
         {
