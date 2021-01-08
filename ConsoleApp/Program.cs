@@ -36,10 +36,26 @@ namespace ConsoleApp
             //RemoveJoinBetweenSamuraiAndBattleSimple();
             //GetSamuraiWithBattles();
             //AddNewHorseToSamuraiUsingId();
-            AddNewHorseToSamuraiObject();
+            //AddNewHorseToSamuraiObject();
+            AddNewHorseToDisconnectedSamuraiObject();
             Console.Write("Press any key...");
             Console.ReadKey();
         }
+
+        private static void AddNewHorseToDisconnectedSamuraiObject()
+        {
+            var samurai = context.Samurais.AsNoTracking().FirstOrDefault(s=>s.Id == 9);
+            samurai.Horse = new Horse
+            {
+                Name = "Mr. Ed"
+            };
+            using(var newContext = new SamuraiAppDataContext())
+            {
+                newContext.Attach(samurai);
+                newContext.SaveChanges();
+            }
+        }
+
 
         private static void AddNewHorseToSamuraiObject()
         {
